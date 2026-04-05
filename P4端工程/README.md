@@ -1,9 +1,5 @@
 # P4 WiFi Remote - MAVLink WiFi 桥接器
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Platform](https://img.shields.io/badge/platform-ESP32--P4-orange.svg)
-![Framework](https://img.shields.io/badge/framework-ESP--IDF%20v5.3%2B-red.svg)
-
 ## 📝 项目概述
 **P4 WiFi Remote** 是一个基于 **ESP32-P4** 的高性能无线控制与 MAVLink 协议桥接系统。
 
