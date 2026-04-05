@@ -1,0 +1,16 @@
+{
+  "idf.openOcdConfigs": [
+    "board/esp32c5-builtin.cfg"
+  ],
+  "idf.customExtraVars": {
+    "IDF_TARGET": "esp32c5"
+  },
+  "clangd.path": "f:\\SDK\\ESP32\\ESP_IDF_TOOLS\\tools\\esp-clang\\esp-19.1.2_20250312\\esp-clang\\bin\\clangd.exe",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=**",
+    "--compile-commands-dir=e:\\WEIDAIDADA\\C5_SLAVE_V1.1\\slave\\build"
+  ],
+  "idf.flashType": "UART",
+  "idf.portWin": "COM18"
+}
