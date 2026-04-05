@@ -1,0 +1,99 @@
+menu "Console Command: WiFi"
+
+    choice WIFI_CMD_DEFAULT_COUNTRY
+        prompt "Set default country during initialize wifi"
+        default WIFI_CMD_DEFAULT_COUNTRY_CN
+        help
+            Set default wifi country during initialize wifi
+
+        config WIFI_CMD_DEFAULT_COUNTRY_NONE
+            bool
+            prompt "Do not set country code"
+
+        config WIFI_CMD_DEFAULT_COUNTRY_CN
+            bool
+            prompt "Set country code to CN (1-13)"
+    endchoice
+
+    config WIFI_CMD_INIT_TO_STATION
+        bool "Force set wifi mode to station during initialization"
+        default y
+        help
+            Force set wifi mode to station
+
+    config WIFI_CMD_INIT_TO_HE_SOFTAP
+        bool "Force set softap protocol to HE for HE supported soc"
+        depends on SOC_WIFI_HE_SUPPORT || SLAVE_SOC_WIFI_HE_SUPPORT
+        default n
+        help
+            Force set wifi mode to station
+
+    config WIFI_CMD_NO_LWIP
+        bool "Init wifi without lwip interface"
+        default n
+        help
+            init wifi without lwip interface
+
+    config WIFI_CMD_BASIC_ONLY
+        bool "Only basic wifi command (For best backwards compatibility)"
+        default n
+        help
+            Only enable basic wifi commands.
+            Some of the commands/features won't be compiled, such as:
+              wifi_stats commands
+              wifi pmf features (as well in sta_scan/sta_connect commands)
+              etc.
+            Note that some specific parameters are not supported when this option is set, such as:
+              "rssi_5g_offset" in sta_connect command.
+
+    menu "Optional commands"
+        depends on !WIFI_CMD_BASIC_ONLY
+
+        config WIFI_CMD_ENABLE_BAND
+            bool "Enable 'wifi_band' if possible"
+            depends on !WIFI_CMD_BASIC_ONLY
+            default y
+            help
+                Enable "wifi_band" command if possible (set 2G or 5G, new in esp-idf v5.3)
+
+        config WIFI_CMD_ENABLE_WIFI_STATS
+            bool "Enable 'wifi_stats'"
+            depends on !WIFI_CMD_BASIC_ONLY && (ESP_WIFI_ENABLE_WIFI_TX_STATS || ESP_WIFI_ENABLE_WIFI_RX_STATS)
+            default y
+            help
+                Enable "wifi_stats" command.
+
+        config WIFI_CMD_ENABLE_ITWT
+            bool "Enable 'itwt' if possible"
+            depends on !WIFI_CMD_BASIC_ONLY
+            default n if ESP_HOSTED_ENABLED  # unsupported itwt yet
+            default y
+            help
+                Enable "itwt" command if possible
+
+        config WIFI_CMD_ENABLE_HE_DEBUG
+            bool "Enable he debug commands if possible"
+            default n if ESP_WIFI_REMOTE_ENABLED   # unsupported
+            default y
+            help
+                Enable he debug commands if possible: omc, stbc, etc.
+                Note this is not avaiable in idf<=5.0
+
+    endmenu
+
+    config WIFI_CMD_ENABLE_DEPRECATED
+        bool "Enable deprecated commands (ap,sta,disconnect)"
+        default y
+        help
+            Enable these deprecated commands - to make it no breaking change with older idf versions v5.0-v5.2:
+              ap => ap_set
+              sta => sta_connect
+              disconnect => sta_disconnect
+              scan => sta_scan
+              txstats => wifi_stats tx get
+              clrtxstats => wifi_stats tx clear
+              rxstats => wifi_stats rx get
+              clrrxstats => wifi_stats rx clear
+            These commands are deprecated and will be removed in wifi-cmd v1.1
+
+endmenu

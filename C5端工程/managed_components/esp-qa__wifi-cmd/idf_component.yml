@@ -1,0 +1,13 @@
+dependencies:
+  idf: '>=4.3'
+description: WiFi Command based on esp-idf console
+files:
+  exclude:
+  - .git*
+  - .pre-commit-config.yaml
+  - tools/**/*
+  - tools
+  - apps/**/*
+  - apps
+  - .cz.toml
+version: 0.2.9

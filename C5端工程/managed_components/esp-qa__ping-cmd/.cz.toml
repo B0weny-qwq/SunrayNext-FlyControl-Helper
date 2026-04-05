@@ -1,0 +1,13 @@
+[tool.commitizen]
+version = "1.0.0"
+name = "cz_conventional_commits"
+tag_format = "v$version"
+bump_message = "ci(bump): bump version $current_version → $new_version"
+version_files = [
+    "apps/linux_host/main/idf_component.yml",
+    "apps/test_app/main/idf_component.yml",
+    "idf_component.yml",
+    "README.md",
+]
+version_scheme = "semver"
+update_changelog_on_bump = true

@@ -1,0 +1,15 @@
+{
+  "idf.openOcdConfigs": [
+    "board/esp32c5-builtin.cfg"
+  ],
+  "idf.customExtraVars": {
+    "IDF_TARGET": "esp32c5"
+  },
+  "clangd.path": "f:\\SDK\\ESP32\\ESP_IDF_TOOLS\\tools\\esp-clang\\esp-19.1.2_20250312\\esp-clang\\bin\\clangd.exe",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=**",
+    "--compile-commands-dir=e:\\WEIDAIDADA\\P4_WIFI_REMOTEv1.0\\managed_components\\espressif__esp_hosted\\slave\\build"
+  ],
+  "idf.portWin": "COM9"
+}

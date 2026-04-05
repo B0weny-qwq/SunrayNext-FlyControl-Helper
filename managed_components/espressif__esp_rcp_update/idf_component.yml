@@ -1,0 +1,12 @@
+dependencies:
+  espressif/esp-serial-flasher:
+    version: ^1.8.0
+  idf:
+    version: '>=5.0'
+description: Espressif RCP Update Component for Thread Border Router and Zigbee Gateway
+repository: git://github.com/espressif/esp-thread-br.git
+repository_info:
+  commit_sha: 81e5f31f0072f62d545f9c9e7c95afecfa4a0d1d
+  path: components/esp_rcp_update
+url: https://github.com/espressif/esp-thread-br/tree/main/components/esp_rcp_update
+version: 1.6.1

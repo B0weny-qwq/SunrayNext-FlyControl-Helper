@@ -1,0 +1,13 @@
+dependencies:
+  idf: '>=4.3'
+description: ping Command based on esp-idf console
+files:
+  exclude:
+  - .git*
+  - .pre-commit-config.yaml
+  - .idf-build-apps.toml
+  - tools/**/*
+  - tools
+  - apps/**/*
+  - apps
+version: 1.0.0
