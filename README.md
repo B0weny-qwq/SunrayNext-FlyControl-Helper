@@ -1,4 +1,4 @@
-# Fly_Control-Helper 🚁
+# SunrayNext-FlyControl-Helper 🚁
 
 这是一个基于 ESP32-P4 和 ESP32-C5 的高性能无线飞控/远程控制助手项目。
 
