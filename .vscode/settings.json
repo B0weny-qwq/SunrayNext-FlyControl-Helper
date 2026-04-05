@@ -1,0 +1,20 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "idf.espIdfPathWin": "f:\\SDK\\ESP32\\ESP_IDF\\v5.5.3\\esp-idf",
+  "idf.pythonInstallPath": "f:\\SDK\\ESP32\\ESP_IDF_TOOLS\\tools\\idf-python\\3.11.2\\python.exe",
+  "idf.openOcdConfigs": [
+    "board/esp32p4-builtin.cfg"
+  ],
+  "idf.portWin": "COM18",
+  "idf.toolsPathWin": "f:\\SDK\\ESP32\\ESP_IDF_TOOLS",
+  "idf.customExtraVars": {
+    "IDF_TARGET": "esp32p4"
+  },
+  "clangd.path": "f:\\SDK\\ESP32\\ESP_IDF_TOOLS\\tools\\esp-clang\\esp-19.1.2_20250312\\esp-clang\\bin\\clangd.exe",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=**",
+    "--compile-commands-dir=e:\\WEIDAIDADA\\P4_WIFI_REMOTEv1.0\\build"
+  ],
+  "idf.flashType": "UART"
+}
