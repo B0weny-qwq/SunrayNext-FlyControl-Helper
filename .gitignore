@@ -1,12 +1,94 @@
-# ESP-IDF 编译产物
+# ESP-IDF / CMake build outputs
 build/
+**/build/
+*.o
+*.a
+*.out
+*.exe
 sdkconfig.old
+**/sdkconfig.old
 sdkconfig.defaults.tmp
+**/sdkconfig.defaults.tmp
+flasher_args.json
+**/flasher_args.json
+CMakeCache.txt
+**/CMakeCache.txt
+CMakeFiles/
+**/CMakeFiles/
+compile_commands.json
+**/compile_commands.json
+cmake_install.cmake
+**/cmake_install.cmake
+install_manifest.txt
+**/install_manifest.txt
+CTestTestfile.cmake
+**/CTestTestfile.cmake
+*.bin
+*.elf
+*.map
+
+# ESP-IDF generated dependency caches
+.espressif/
+**/.espressif/
+.idf_component_manager/
+**/.idf_component_manager/
+/components/.idf/
+**/components/.idf/
+
+# ESP-IDF Component Manager resolved packages
+# Commit idf_component.yml + dependencies.lock instead of generated vendor trees.
+managed_components/
+**/managed_components/
+
+# Project-specific local configs
+/p4-firmware/sdkconfig
 
 # 本地 IDE 配置
 .vscode/
+.idea/
+.clangd
 .clangd/
+**/.clangd
+**/.clangd/
+.ccls-cache/
+**/.ccls-cache/
+
+# Python / script caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+venv/
+.venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Common local temporary files
+*.log
+*.tmp
+*.swp
+*.swo
+*.bak
+*~
+.cache/
+.history/
 
 # 操作系统临时文件
 .DS_Store
+.AppleDouble
+.LSOverride
+.directory
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# User-specific workspace files
+*.user
+*.workspace
+*.suo
+*.sln.docstates

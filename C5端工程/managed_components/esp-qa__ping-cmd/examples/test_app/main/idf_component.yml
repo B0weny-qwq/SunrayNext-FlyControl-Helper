@@ -1,5 +1,0 @@
-## IDF Component Manager Manifest File
-dependencies:
-  esp-qa/ping-cmd:
-    version: "1.0.0"
-    override_path: "../../../"
