@@ -34,12 +34,30 @@
 - 没有进入预期日志
 - P4 没有控制台
 - C5 没有进入协处理器固件启动逻辑
+- C5 日志停在 `waiting for download`
 
 先查：
 
 - 是否烧到了正确的目标板
 - 是否用了错误的 `sdkconfig`
 - 是否在 C5 端破坏了 no-PSRAM 或 SDIO 相关配置
+- C5 的 `BOOT` 线在复位瞬间是否仍然把芯片带回下载模式
+
+如果你在 C5 上看到下面这段日志：
+
+```text
+boot:0x28 (DOWNLOAD(UART0/USB))
+waiting for download
+```
+
+说明问题还停留在“启动模式选择”这一层，还没进入应用。对当前这块板，已经验证可用的做法是：
+
+1. 先让 `BOOT` 进入下载模式，开始执行烧录。
+2. 烧录进入写 Flash 阶段后，把 `BOOT` 改接到 `3.3V`。
+3. 等待烧录结束后的自动复位。
+4. 这次复位会重新采样 `BOOT`，然后进入 `SPI_FAST_FLASH_BOOT`。
+
+详细步骤见 [C5 烧录与启动模式说明](./guides/c5-flashing-boot-mode.md)。
 
 ### 3. P4 控制台可用，但网络不工作
 

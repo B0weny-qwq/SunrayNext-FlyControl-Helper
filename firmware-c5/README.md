@@ -33,6 +33,26 @@ idf.py build
 idf.py flash monitor
 ```
 
+## Boot-Mode Note For External Download Adapters
+
+Some C5 boards wired through an external downloader can be flashed successfully but still fall back to:
+
+```text
+boot:0x28 (DOWNLOAD(UART0/USB))
+waiting for download
+```
+
+When that happens, the problem is not yet in the application. The chip is still selecting download mode at reset time.
+
+The validated workaround for this repository is:
+
+1. Start flashing with `BOOT` wired so the chip can enter download mode.
+2. After flashing has already entered the write phase, move `BOOT` to `3.3V`.
+3. Let `idf.py flash monitor` finish normally.
+4. The final auto-reset will then sample `BOOT` high and continue with `SPI_FAST_FLASH_BOOT`.
+
+This behavior is board-specific. The detailed Chinese bring-up note is in [`docs/guides/c5-flashing-boot-mode.md`](../docs/guides/c5-flashing-boot-mode.md).
+
 ## Configuration Cautions
 
 This project depends on the checked-in `sdkconfig`, `sdkconfig.defaults`, and `sdkconfig.defaults.esp32c5`. Do not casually reset or regenerate the configuration.

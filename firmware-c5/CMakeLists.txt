@@ -1,12 +1,14 @@
 # The following lines of boilerplate have to be in your project's CMakeLists
 # in this exact order for cmake to work correctly
 cmake_minimum_required(VERSION 3.5)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Add the wrap flag for esp_wifi_init
 add_compile_options(-Wl,--wrap=esp_wifi_init)
 
-# Read version from header file before project() call
-file(READ "${CMAKE_CURRENT_SOURCE_DIR}/main/esp_hosted_coprocessor_fw_ver.h" HEADER_CONTENTS)
+# Read version from the relocated upstream header before project() call
+set(PROJECT_VERSION_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/main/upstream/esp_hosted_coprocessor_fw_ver.h")
+file(READ "${PROJECT_VERSION_HEADER}" HEADER_CONTENTS)
 set(PROJECT_VERSION_REGEX "#define[ \t]+PROJECT_VERSION_MAJOR_1[ \t]+([0-9]+)[ \t\n]+#define[ \t]+PROJECT_VERSION_MINOR_1[ \t]+([0-9]+)[ \t\n]+#define[ \t]+PROJECT_VERSION_PATCH_1[ \t]+([0-9]+)")
 string(REGEX MATCH "${PROJECT_VERSION_REGEX}" PROJECT_VERSION_MATCH "${HEADER_CONTENTS}")
 
@@ -28,14 +30,11 @@ set(COMPONENTS esp_timer esptool_py bootloader main nvs_flash esp_rom esp_wifi p
 project(network_adapter)
 idf_build_set_property(COMPILE_OPTIONS "-fdiagnostics-color=always" APPEND)
 
-if(EXISTS "${PROJECT_DIR}/../common")
-    set(common_dir "${PROJECT_DIR}/../common")
-    message(STATUS "common: ${common_dir}")
-elseif(EXISTS "${PROJECT_DIR}/main/common")
-    set(common_dir "${PROJECT_DIR}/main/common")
+set(common_dir "${PROJECT_DIR}/common")
+if(EXISTS "${common_dir}")
     message(STATUS "common: ${common_dir}")
 else()
-    message(FATAL_ERROR "Could not find 'common' directory in either '${PROJECT_DIR}/../common' or '${PROJECT_DIR}/main/common'")
+    message(FATAL_ERROR "Could not find vendored 'common' directory at '${common_dir}'")
 endif()
 
 

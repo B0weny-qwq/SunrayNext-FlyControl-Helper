@@ -52,6 +52,16 @@ managed_components/
 **/.clangd/
 .ccls-cache/
 **/.ccls-cache/
+!/.vscode/
+!/firmware-p4/.vscode/
+!/firmware-c5/.vscode/
+!/.vscode/settings.json
+!/firmware-p4/.vscode/settings.json
+!/firmware-c5/.vscode/settings.json
+!/.clangd
+!/firmware-p4/.clangd
+!/firmware-c5/.clangd
+!/firmware-c5/common/.clangd
 
 # Python / script caches
 __pycache__/
@@ -92,3 +102,6 @@ Desktop.ini
 *.workspace
 *.suo
 *.sln.docstates
+
+# Local git worktrees
+.worktrees/

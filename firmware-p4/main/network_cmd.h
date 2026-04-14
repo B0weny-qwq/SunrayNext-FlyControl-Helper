@@ -9,22 +9,6 @@
 #ifndef NETWORK_CMD_H
 #define NETWORK_CMD_H
 
-#include "esp_err.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-/**
- * @brief 注册所有网络通信命令
- *
- * @return ESP_OK 成功
- *         其他 注册失败
- */
-esp_err_t network_cmd_register(void);
-
-#ifdef __cplusplus
-}
-#endif
+#include "network/command/network_command.h"
 
 #endif /* NETWORK_CMD_H */

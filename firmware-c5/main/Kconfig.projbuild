@@ -4,10 +4,18 @@ menu "Example Configuration"
 		bool
 		default y
 
+	config C5_PRODUCT_STRICT_SDIO_ONLY
+		bool "Product mode: C5 + SDIO only"
+		default y if IDF_TARGET_ESP32C5
+		default n
+		help
+			Hides non-product transport and example menus for the current repository.
+			Disable only when you intentionally need to bring back SPI / SPI-HD / UART or demo flows.
+
 	config ESP_HOSTED_CP_BT
 		bool "Enable BT sharing via hosted"
 		default n if !SOC_BT_SUPPORTED
-		default y
+		default n
 		help
 			This removes coprocessor sharing BT capabilities with the Host irrespective of
 			if it supports BT or not
@@ -82,6 +90,7 @@ menu "Example Configuration"
 				Bus interface to be used for communication with the host
 
 			config ESP_SPI_HOST_INTERFACE
+				depends on !C5_PRODUCT_STRICT_SDIO_ONLY
 				depends on !IDF_TARGET_ESP32H4 # not yet supported on ESP32-H4
 				bool "SPI Full-duplex"
 				help
@@ -94,6 +103,7 @@ menu "Example Configuration"
 					Enable/Disable SDIO host interface
 
 			config ESP_SPI_HD_HOST_INTERFACE
+				depends on !C5_PRODUCT_STRICT_SDIO_ONLY
 				bool "SPI Half-duplex"
 				depends on !IDF_TARGET_ESP32H4 # not yet supported on ESP32-H4
 				depends on SOC_SPI_SUPPORT_SLAVE_HD_VER2
@@ -101,6 +111,7 @@ menu "Example Configuration"
 					Enable/Disable SPI Half-duplex host interface
 
 			config ESP_UART_HOST_INTERFACE
+				depends on !C5_PRODUCT_STRICT_SDIO_ONLY
 				bool "UART"
 				help
 					Enable/Disable UART host interface
@@ -1523,7 +1534,7 @@ endif
 			Extra set of optional examples to run at slave
 
 	menu "Select Examples to run"
-		depends on ESP_HOSTED_EXTRA_EXAMPLES
+		depends on ESP_HOSTED_EXTRA_EXAMPLES && !C5_PRODUCT_STRICT_SDIO_ONLY
 
 		# 'slave to host' OR 'host to slave' data transfer example
 		config EXAMPLE_PEER_DATA_TRANSFER

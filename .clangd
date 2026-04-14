@@ -1,0 +1,9 @@
+If:
+  PathMatch: (^|.*/)firmware-p4/.*
+CompileFlags:
+  CompilationDatabase: firmware-p4/build
+---
+If:
+  PathMatch: (^|.*/)firmware-c5/.*
+CompileFlags:
+  CompilationDatabase: firmware-c5/build

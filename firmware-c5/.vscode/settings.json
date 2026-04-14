@@ -1,0 +1,19 @@
+{
+  "clangd.path": "/Users/groove/.espressif/tools/esp-clang/esp-19.1.2_20250312/esp-clang/bin/clangd",
+  "files.associations": {
+    "*.h": "c",
+    "build/*.h": "c",
+    "build/**/*.h": "c",
+    "build/config/*.h": "c",
+    "common/*.h": "c",
+    "common/**/*.h": "c",
+    "main/*.h": "c",
+    "main/**/*.h": "c"
+  },
+  "clangd.arguments": [
+    "--query-driver=/Users/groove/.espressif/tools/**/bin/*"
+  ],
+  "idf.currentSetup": "/Users/groove/.espressif/v5.5.3/esp-idf",
+  "idf.port": "/dev/tty.usbmodem5B410410081",
+  "idf.flashType": "UART"
+}

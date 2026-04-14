@@ -1,0 +1,8 @@
+CompileFlags:
+  CompilationDatabase: build
+  Remove:
+    - -fstrict-volatile-bitfields
+    - -fno-tree-switch-conversion
+    - -std=*
+  Add:
+    - -std=gnu17

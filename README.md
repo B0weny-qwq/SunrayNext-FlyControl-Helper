@@ -131,6 +131,8 @@ idf.py set-target esp32c5
 idf.py build flash monitor
 ```
 
+Some C5 boards used with external download adapters do not return to application boot automatically after flashing. If the serial log stays at `waiting for download`, keep the board in download mode only long enough to start flashing, then move `BOOT` to `3.3V` before the final auto-reset so the next reset enters `SPI_FAST_FLASH_BOOT`. The full bring-up note is documented in [docs/guides/c5-flashing-boot-mode.md](./docs/guides/c5-flashing-boot-mode.md).
+
 See [`firmware-c5/README.md`](./firmware-c5/README.md) for integration notes and build cautions.
 
 ## Hardware Assets

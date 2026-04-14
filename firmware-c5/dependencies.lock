@@ -2,7 +2,7 @@ dependencies:
   cmd_system:
     dependencies: []
     source:
-      path: F:\SDK\ESP32\ESP_IDF\v5.5.3\esp-idf\examples\system\console\advanced\components\cmd_system
+      path: /Users/groove/.espressif/v5.5.3/esp-idf/examples/system/console/advanced/components/cmd_system
       type: local
     version: '*'
   esp-qa/ping-cmd:
@@ -16,7 +16,7 @@ dependencies:
       type: service
     version: 1.0.0
   esp-qa/wifi-cmd:
-    component_hash: 9ef4e129a1e99a9100f4f87a6ead47617b19db911469b3a3b0e84dfbc115965a
+    component_hash: c44a506cafc66c65c92824636ee1e851871a36315914a4eac2aa8b99b39946c2
     dependencies:
     - name: idf
       require: private
@@ -24,7 +24,7 @@ dependencies:
     source:
       registry_url: https://components.espressif.com/
       type: service
-    version: 0.2.9
+    version: 0.2.11
   espressif/iperf:
     component_hash: f4c2beaae50478a626995130d2611c628b7a568cd0799022758c05658928410c
     dependencies:

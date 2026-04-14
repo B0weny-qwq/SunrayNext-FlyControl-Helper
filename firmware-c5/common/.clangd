@@ -1,0 +1,8 @@
+CompileFlags:
+  CompilationDatabase: .
+  Remove:
+    - -std=*
+  Add:
+    - -x
+    - c-header
+    - -std=gnu17

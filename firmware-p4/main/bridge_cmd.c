@@ -12,12 +12,14 @@
  */
 
 #include "bridge_cmd.h"
-#include "mavlink_bridge.h"
+
+#include <stdio.h>
+#include <string.h>
+
+#include "bridge/service/bridge_runtime.h"
 #include "esp_console.h"
 #include "esp_err.h"
 #include "esp_log.h"
-#include <stdio.h>
-#include <string.h>
 
 static const char *TAG = "bridge_cmd";
 

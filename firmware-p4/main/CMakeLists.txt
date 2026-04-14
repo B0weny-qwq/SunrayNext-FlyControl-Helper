@@ -1,3 +1,23 @@
-idf_component_register(SRCS "main.c" "wifi_app.c" "console_app.c" "network_app.cpp" "network_cmd.c"
-                    "mavlink_bridge.cpp" "bridge_cmd.c"
-                    INCLUDE_DIRS ".")
+idf_component_register(
+    SRCS
+        "main.c"
+        "app/service/app_boot.c"
+        "wifi_app.c"
+        "console_app.c"
+        "bridge/service/bridge_runtime.cpp"
+        "bridge/service/bridge_network_runtime.cpp"
+        "bridge/service/bridge_stats.cpp"
+        "bridge/service/bridge_accessors.cpp"
+        "bridge/adapter/mavlink_parser.cpp"
+        "network/service/network_runtime.cpp"
+        "network/service/network_config_store.cpp"
+        "network/service/network_session_udp.cpp"
+        "network/service/network_session_tcp.cpp"
+        "network/adapter/socket_adapter.cpp"
+        "network/command/network_command.c"
+        "network/command/network_command_args.c"
+        "network/command/network_command_help.c"
+        "transport/adapter/uart_port.cpp"
+        "bridge_cmd.c"
+    INCLUDE_DIRS
+        ".")

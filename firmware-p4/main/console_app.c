@@ -25,9 +25,9 @@
 #include "esp_err.h"
 #include "esp_log.h"
 #include "console_app.h"
-#include "wifi_app.h"
-#include "network_cmd.h"
 #include "bridge_cmd.h"
+#include "network/command/network_command.h"
+#include "wifi_app.h"
 
 /**
  * @brief 日志输出标签

@@ -75,6 +75,8 @@ idf.py set-target esp32c5
 idf.py flash monitor
 ```
 
+如果你的 C5 板在烧录完成后总是停在 `waiting for download`，先不要立刻怀疑固件。先看 [C5 烧录与启动模式说明](./guides/c5-flashing-boot-mode.md)。对这块板来说，`BOOT` 在复位瞬间的电平会决定它是继续停在下载模式，还是从 Flash 启动应用。
+
 ## 第一次联通验证
 
 第一次联通验证建议只看“设备是否起来”，不要一开始就追求完整飞控业务。
@@ -94,6 +96,8 @@ P4 启动后应该完成三件事：
 ### 再看 C5
 
 C5 启动时，重点不是立即发业务数据，而是确认它以 `esp-hosted` 协处理器固件的方式启动，并且使用的是预期的 SDIO 传输配置。
+
+如果日志里出现 `boot:0x28 (DOWNLOAD(UART0/USB))`，说明它这次没有进入应用。先回到 [04 常见问题排查](./04-troubleshooting.md) 的 C5 启动部分，再结合 [C5 烧录与启动模式说明](./guides/c5-flashing-boot-mode.md) 调整 `BOOT` 线在复位前的状态。
 
 ## 第一次推荐输入的命令
 

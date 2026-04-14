@@ -131,6 +131,8 @@ idf.py set-target esp32c5
 idf.py build flash monitor
 ```
 
+如果某些 C5 板在烧录完成后总是停在 `waiting for download`，不要先把它当成固件问题。对当前验证过的这块板，正确做法是先让 `BOOT` 进入下载模式开始烧录，等写 Flash 阶段开始后再把 `BOOT` 改接到 `3.3V`，这样烧录结束后的自动复位就会进入 `SPI_FAST_FLASH_BOOT`。完整说明见 [docs/guides/c5-flashing-boot-mode.md](./docs/guides/c5-flashing-boot-mode.md)。
+
 详细说明见 [`firmware-c5/README.md`](./firmware-c5/README.md)。
 
 ## 硬件资料
