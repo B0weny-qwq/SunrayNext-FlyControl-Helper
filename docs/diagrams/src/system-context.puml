@@ -1,0 +1,18 @@
+@startuml
+title 系统关系图
+!include _theme.iuml
+skinparam packageStyle rectangle
+
+actor "PC / Simulator" as PC
+actor "Ground Station" as GCS
+rectangle "ESP32-P4\n主控桥接程序" as P4
+rectangle "ESP32-C5\n无线协处理器" as C5
+rectangle "Flight Controller\n飞控" as FC
+
+PC --> P4 : UDP / TCP 数据
+GCS --> P4 : 监控或控制数据
+P4 --> FC : UART 转发
+FC --> P4 : UART 回传
+P4 --> C5 : SDIO 主控侧访问
+C5 --> P4 : 无线能力与链路支撑
+@enduml

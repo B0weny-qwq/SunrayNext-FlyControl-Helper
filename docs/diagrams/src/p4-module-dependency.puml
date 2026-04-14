@@ -1,0 +1,24 @@
+@startuml
+title P4 模块依赖图
+!include _theme.iuml
+
+package "P4 Firmware" {
+  [main.c] as Main
+  [wifi_app] as Wifi
+  [console_app] as Console
+  [network_cmd] as NetCmd
+  [bridge_cmd] as BridgeCmd
+  [network_app] as NetApp
+  [mavlink_bridge] as Bridge
+}
+
+Main --> Wifi
+Main --> Bridge
+Main --> Console
+Console --> NetCmd
+Console --> BridgeCmd
+NetCmd --> NetApp
+BridgeCmd --> Bridge
+Bridge --> Wifi
+Bridge --> NetApp
+@enduml

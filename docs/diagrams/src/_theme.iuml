@@ -1,0 +1,8 @@
+!ifdef WHITE_BG
+skinparam backgroundColor white
+!else
+skinparam backgroundColor transparent
+!endif
+
+skinparam shadowing false
+skinparam defaultFontName PingFang SC

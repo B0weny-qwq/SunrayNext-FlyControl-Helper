@@ -1,0 +1,16 @@
+@startuml
+title UART 到网络时序图
+!include _theme.iuml
+
+participant "Flight Controller" as FC
+participant "UART Port" as UART
+participant "mavlink_bridge" as Bridge
+participant "network_app / sockets" as Net
+actor "PC / GCS" as Client
+
+FC -> UART : 发送串口数据
+UART -> Bridge : UART 接收任务读取
+Bridge -> Bridge : 更新统计与回调
+Bridge -> Net : 广播或发送网络数据
+Net -> Client : 客户端收到回传
+@enduml

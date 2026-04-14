@@ -1,0 +1,46 @@
+@startuml
+title Bring-up 排查流程图
+!include _theme.iuml
+
+start
+:确认 ESP-IDF 环境可用;
+if (idf.py 可执行?) then (是)
+  :编译 P4 / C5;
+  if (编译通过?) then (是)
+    :烧录设备;
+    if (P4 控制台可用?) then (是)
+      if (C5 协处理器启动正常?) then (是)
+        if (Wi-Fi 连通?) then (是)
+          if (网络服务启动?) then (是)
+            if (UART 已启用?) then (是)
+              :检查端到端消息;
+              stop
+            else (否)
+              :回查 uart_en / 波特率 / 接线;
+              stop
+            endif
+          else (否)
+            :回查 net_type / net_mode / net_target;
+            stop
+          endif
+        else (否)
+          :回查 Wi-Fi 配置与热点;
+          stop
+        endif
+      else (否)
+        :回查 C5 日志与 sdkconfig;
+        stop
+      endif
+    else (否)
+      :回查 P4 启动日志与 console 初始化;
+      stop
+    endif
+  else (否)
+    :回查工具链、target 和配置;
+    stop
+  endif
+else (否)
+  :先加载 ESP-IDF 环境;
+  stop
+endif
+@enduml

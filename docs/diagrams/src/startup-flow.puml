@@ -1,0 +1,23 @@
+@startuml
+title P4 启动流程图
+!include _theme.iuml
+
+start
+:app_main 启动;
+:延时等待硬件稳定;
+:wifi_app_init();
+if (Wi-Fi 初始化成功?) then (是)
+  :init_bridge();
+  if (桥接器初始化成功?) then (是)
+    :console_app_init();
+    :控制台进入可交互状态;
+    stop
+  else (否)
+    :打印桥接器错误;
+    stop
+  endif
+else (否)
+  :打印 Wi-Fi 错误;
+  stop
+endif
+@enduml
