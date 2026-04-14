@@ -11,8 +11,8 @@ The project is split into two firmware targets that work together:
 
 | Component | Target | Role |
 | --- | --- | --- |
-| [`p4-firmware`](./p4-firmware/) | ESP32-P4 | Main controller, Wi-Fi/UART bridge, console commands, MAVLink forwarding |
-| [`c5-firmware`](./c5-firmware/) | ESP32-C5 | Customized `esp-hosted` SDIO slave firmware that provides the wireless link for the P4 |
+| [`firmware-p4`](./firmware-p4/) | ESP32-P4 | Main controller, Wi-Fi/UART bridge, console commands, MAVLink forwarding |
+| [`firmware-c5`](./firmware-c5/) | ESP32-C5 | Customized `esp-hosted` SDIO slave firmware that provides the wireless link for the P4 |
 
 The repository also includes hardware manufacturing files and physical board assets:
 
@@ -45,8 +45,8 @@ ESP32-C5 provides the wireless link for the P4 over SDIO.
 
 ```text
 .
-├── p4-firmware/
-├── c5-firmware/
+├── firmware-p4/
+├── firmware-c5/
 ├── pcb-design/
 ├── hardware-assets/
 ├── README.md
@@ -72,14 +72,14 @@ cd SunrayNext-FlyControl-Helper
 ### 2. Build the P4 firmware
 
 ```bash
-cd p4-firmware
+cd firmware-p4
 idf.py build
 ```
 
 ### 3. Build the C5 firmware
 
 ```bash
-cd ../c5-firmware
+cd ../firmware-c5
 idf.py set-target esp32c5
 idf.py build
 ```
@@ -98,7 +98,7 @@ Key capabilities:
 Common workflow:
 
 ```bash
-cd p4-firmware
+cd firmware-p4
 idf.py flash monitor
 ```
 
@@ -111,7 +111,7 @@ net_target <pc_ip> 8888
 uart_en 1 1
 ```
 
-See [`p4-firmware/README.md`](./p4-firmware/README.md) for the full command set and module breakdown.
+See [`firmware-p4/README.md`](./firmware-p4/README.md) for the full command set and module breakdown.
 
 ## C5 Firmware Workflow
 
@@ -126,12 +126,12 @@ Key constraints:
 Build and flash:
 
 ```bash
-cd c5-firmware
+cd firmware-c5
 idf.py set-target esp32c5
 idf.py build flash monitor
 ```
 
-See [`c5-firmware/README.md`](./c5-firmware/README.md) for integration notes and build cautions.
+See [`firmware-c5/README.md`](./firmware-c5/README.md) for integration notes and build cautions.
 
 ## Hardware Assets
 

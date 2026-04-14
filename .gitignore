@@ -41,7 +41,7 @@ managed_components/
 **/managed_components/
 
 # Project-specific local configs
-/p4-firmware/sdkconfig
+/firmware-p4/sdkconfig
 
 # 本地 IDE 配置
 .vscode/

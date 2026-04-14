@@ -92,10 +92,10 @@
 
 | 现象 | 优先看哪里 |
 | --- | --- |
-| 控制台命令不存在 | `p4-firmware/main/console_app.c`、`network_cmd.c`、`bridge_cmd.c` |
-| 网络设置无效 | `p4-firmware/main/network_app.cpp`、`network_cmd.c` |
-| UART 无转发 | `p4-firmware/main/mavlink_bridge.cpp`、`bridge_cmd.c` |
-| C5 启动配置异常 | `c5-firmware/main/esp_hosted_coprocessor.c`、`sdkconfig` |
+| 控制台命令不存在 | `firmware-p4/main/console_app.c`、`network_cmd.c`、`bridge_cmd.c` |
+| 网络设置无效 | `firmware-p4/main/network_app.cpp`、`network_cmd.c` |
+| UART 无转发 | `firmware-p4/main/mavlink_bridge.cpp`、`bridge_cmd.c` |
+| C5 启动配置异常 | `firmware-c5/main/esp_hosted_coprocessor.c`、`sdkconfig` |
 
 ## 什么时候该回头补文档
 

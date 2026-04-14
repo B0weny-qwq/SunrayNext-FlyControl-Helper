@@ -19,9 +19,9 @@ This firmware turns the ESP32-C5 into a networking companion for the P4 controll
 | --- | --- |
 | `main/esp_hosted_coprocessor.c` | Main co-processor startup flow |
 | `main/` | Transport, Wi-Fi, control, and support modules |
-| `managed_components/` | Upstream-managed dependencies vendored into the project |
+| `dependencies.lock` | Locked ESP-IDF component versions for reproducible restores |
 | `sdkconfig` | Active project configuration that should be preserved |
-| `partitions.*.csv` | Chip-specific partition layouts |
+| `partitions.esp32c5.csv` | Active flash partition layout for the C5 target |
 
 ## Build and Flash
 
@@ -35,7 +35,7 @@ idf.py flash monitor
 
 ## Configuration Cautions
 
-This project depends on the checked-in `sdkconfig` and related defaults. Do not casually reset or regenerate the configuration.
+This project depends on the checked-in `sdkconfig`, `sdkconfig.defaults`, and `sdkconfig.defaults.esp32c5`. Do not casually reset or regenerate the configuration.
 
 Important constraints:
 
@@ -48,7 +48,7 @@ If these settings drift, initialization failures such as memory allocation error
 ## Integration Notes
 
 - The P4 side depends on this firmware to provide the wireless link over SDIO.
-- Most files under `managed_components/` should be treated as vendored upstream content.
+- `managed_components/` is a generated restore directory and can be recreated from `idf_component.yml` plus `dependencies.lock`.
 - When changing transport, memory, or Wi-Fi behavior, validate the combined P4+C5 system rather than only this firmware in isolation.
 
 ## When You Need to Change This Firmware

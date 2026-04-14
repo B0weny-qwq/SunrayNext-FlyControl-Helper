@@ -49,7 +49,7 @@
 #if CONFIG_IDF_TARGET_ESP32 && !CONFIG_RINGBUF_PLACE_FUNCTIONS_INTO_FLASH
 #error Building for UART transport can fail due to lack of IRAM space
 #error To free up IRAM, enable Component config --> ESP Ringbuf ---> Place non-ISR ringbuf functions into flash
-#error or uncomment CONFIG_RINGBUF_PLACE_FUNCTIONS_INTO_FLASH=y in sdkconfig.defaults.esp32 and regenerate sdkconfig
+#error Enable CONFIG_RINGBUF_PLACE_FUNCTIONS_INTO_FLASH in the active target defaults and regenerate sdkconfig
 #endif
 #endif
 

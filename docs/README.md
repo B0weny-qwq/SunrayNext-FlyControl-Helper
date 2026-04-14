@@ -31,6 +31,7 @@
 5. [控制台命令](./interfaces/console-commands.md)
 6. [数据流](./interfaces/data-flow.md)
 7. [如何新增一个功能](./guides/adding-a-feature.md)
+8. [P4 / C5 Main 解耦检查清单](./checktodolist.md)
 
 ## 文档分层
 
@@ -59,8 +60,9 @@
 
 - 仓库入口说明见 [README.md](../README.md)
 - 中文仓库说明见 [README_cn.md](../README_cn.md)
-- P4 子工程说明见 [p4-firmware/README.md](../p4-firmware/README.md)
-- C5 子工程说明见 [c5-firmware/README.md](../c5-firmware/README.md)
+- P4 子工程说明见 [firmware-p4/README.md](../firmware-p4/README.md)
+- C5 子工程说明见 [firmware-c5/README.md](../firmware-c5/README.md)
+- Main 解耦执行清单见 [checktodolist.md](./checktodolist.md)
 
 ## 如何维护这套文档
 

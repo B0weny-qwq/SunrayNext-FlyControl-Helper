@@ -21,7 +21,7 @@
 
 ### 1. 先定位入口
 
-P4 入口在 `p4-firmware/main/main.c`。C5 入口在 `c5-firmware/main/esp_hosted_coprocessor.c`。
+P4 入口在 `firmware-p4/main/main.c`。C5 入口在 `firmware-c5/main/esp_hosted_coprocessor.c`。
 
 ### 2. 再定位模块
 
@@ -65,7 +65,7 @@ C5 一般先看：
 ### P4
 
 ```bash
-cd p4-firmware
+cd firmware-p4
 idf.py build
 idf.py flash monitor
 ```
@@ -73,7 +73,7 @@ idf.py flash monitor
 ### C5
 
 ```bash
-cd c5-firmware
+cd firmware-c5
 idf.py set-target esp32c5
 idf.py build
 idf.py flash monitor
