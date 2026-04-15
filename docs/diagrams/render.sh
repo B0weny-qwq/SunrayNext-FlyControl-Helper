@@ -78,6 +78,9 @@ out_dir = Path(sys.argv[2])
 for svg_file in sorted(out_dir.glob("*.svg")):
     text = svg_file.read_text(encoding="utf-8")
 
+    # Normalize any previously injected explicit background layer so reruns stay idempotent.
+    text = re.sub(r'<rect id="codex-svg-bg"[^>]*/>', '', text, count=1)
+
     def replace_style(match):
         style = match.group(1)
         style = re.sub(r'background:\s*#FFFFFF;?', '', style)
@@ -91,6 +94,17 @@ for svg_file in sorted(out_dir.glob("*.svg")):
         text = re.sub(r'style="([^"]*)"', replace_style, text, count=1)
     elif background == "white":
         text = text.replace("<svg ", '<svg style="background:#FFFFFF;" ', 1)
+
+    # Some Markdown/SVG renderers ignore the root svg background style.
+    # Insert an explicit white rect as the first drawable layer for white mode.
+    if background == "white":
+        bg_rect = '<rect id="codex-svg-bg" width="100%" height="100%" fill="#FFFFFF"/>'
+        if "<defs/>" in text:
+            text = text.replace("<defs/>", f"<defs/>{bg_rect}", 1)
+        elif "<defs>" in text:
+            text = re.sub(r'(<defs>.*?</defs>)', rf'\1{bg_rect}', text, count=1, flags=re.S)
+        else:
+            text = text.replace(">", f">{bg_rect}", 1)
 
     svg_file.write_text(text, encoding="utf-8")
 PY
