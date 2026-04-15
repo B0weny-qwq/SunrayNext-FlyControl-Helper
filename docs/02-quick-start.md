@@ -101,16 +101,17 @@ C5 启动时，重点不是立即发业务数据，而是确认它以 `esp-hoste
 
 ## 第一次推荐输入的命令
 
-P4 端先从最简单的控制台操作开始：
+P4 端先从最简单的控制台操作开始。当前主 MAVLink 桥接链路会在 `app_boot` 中随 `mavlink_bridge_init()` 一起启动，默认监听 `UDP 8888` 和 `TCP 8889`，所以第一次 bring-up 不需要先执行 `net_start`：
 
 ```text
 wifi_set <ssid> <password>
-net_type udp
-net_target <pc_ip> 8888
-uart_en 1 1
+uart_en 0 1
+uart_status
 ```
 
-这里不要一次改很多参数。先让最基础的默认链路走通，再考虑改串口波特率、协议模式或客户端/服务端模式。
+这里的 `uart_en` 当前按数组下标工作，`0=TELEM1`、`1=TELEM2`、`2=DEBUG`。先让最基础的默认链路走通，再从 PC 直接向 P4 当前 IP 的 `8888/udp` 发送数据，或连接 `8889/tcp` 验证主桥接端口。
+
+`net_*` 命令对应的是独立的 `network/service/*` 调试通道，不是 `app_boot` 启动的主桥接入口。只有当你想单独验证那套网络命令路径时，才需要继续配置 `net_type`、`net_mode`、`net_target` 和 `net_start`。
 
 ## 下一步看什么
 

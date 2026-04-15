@@ -23,7 +23,7 @@
 优先看：
 
 - `console_app`
-- `network_cmd` 或 `bridge_cmd`
+- `network/command/*` 或 `bridge_cmd`
 - 对应业务模块
 
 ### P4 业务行为
@@ -37,8 +37,8 @@
 优先看：
 
 - `main.c`
-- `network_app`
-- `mavlink_bridge`
+- `app/service/app_boot.c`
+- `bridge/service/*`
 
 ### C5 协处理器行为
 
@@ -50,9 +50,10 @@
 
 优先看：
 
-- `esp_hosted_coprocessor.c`
-- `slave_control.*`
-- `sdio_slave_api.*`
+- `upstream/esp_hosted_coprocessor.c`
+- `app/service/coprocessor_entry.c`
+- `upstream/slave_control.*`
+- `upstream/sdio_slave_api.*`
 - `sdkconfig`
 
 ## 推荐的最小改动路径

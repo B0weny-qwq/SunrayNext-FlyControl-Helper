@@ -31,9 +31,8 @@
 5. [控制台命令](./interfaces/console-commands.md)
 6. [数据流](./interfaces/data-flow.md)
 7. [如何新增一个功能](./guides/adding-a-feature.md)
-8. [P4 / C5 Main 解耦检查清单](./checktodolist.md)
-9. [C5 烧录与启动模式说明](./guides/c5-flashing-boot-mode.md)
-10. [烧录速度矩阵实验报告](./guides/flash-benchmark-matrix.md)
+8. [C5 烧录与启动模式说明](./guides/c5-flashing-boot-mode.md)
+9. [烧录速度矩阵实验报告](./guides/flash-benchmark-matrix.md)
 
 ## 文档分层
 
@@ -66,7 +65,6 @@
 - C5 子工程说明见 [firmware-c5/README.md](../firmware-c5/README.md)
 - C5 烧录与 `waiting for download` 处理见 [guides/c5-flashing-boot-mode.md](./guides/c5-flashing-boot-mode.md)
 - 烧录速度矩阵实验与推荐配置见 [guides/flash-benchmark-matrix.md](./guides/flash-benchmark-matrix.md)
-- Main 解耦执行清单见 [checktodolist.md](./checktodolist.md)
 
 ## 如何维护这套文档
 

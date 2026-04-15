@@ -2,17 +2,22 @@
 title C5 分层图
 !include _theme.iuml
 
-rectangle "项目定制入口\nesp_hosted_coprocessor.c" as Entry
-rectangle "控制与能力层\nslave_control / slave_wifi_std" as Control
-rectangle "传输层\nsdio_slave_api 等" as Transport
-rectangle "上游基础层\nesp-hosted 与 managed_components" as Upstream
+rectangle "主启动入口\nupstream/esp_hosted_coprocessor.c" as Entry
+rectangle "项目定制边界\ncoprocessor_entry / feature_flags / Kconfig" as Product
+rectangle "控制与能力层\nupstream/slave_control / slave_wifi_std" as Control
+rectangle "传输层\nupstream/sdio_slave_api 等" as Transport
+rectangle "上游基础层\nesp-hosted 与 common/" as Upstream
 rectangle "配置约束\nsdkconfig / partitions" as Config
 
+Entry --> Product
 Entry --> Control
 Entry --> Transport
+Product --> Control
+Product --> Transport
 Control --> Upstream
 Transport --> Upstream
 Config --> Entry
+Config --> Product
 Config --> Control
 Config --> Transport
 @enduml

@@ -4,21 +4,24 @@ title P4 模块依赖图
 
 package "P4 Firmware" {
   [main.c] as Main
+  [app_boot.c] as Boot
   [wifi_app] as Wifi
   [console_app] as Console
-  [network_cmd] as NetCmd
+  [network/command/*] as NetCmd
   [bridge_cmd] as BridgeCmd
-  [network_app] as NetApp
-  [mavlink_bridge] as Bridge
+  [network/service/*] as NetApp
+  [bridge/service/*] as Bridge
+  [uart_port.cpp] as Uart
 }
 
-Main --> Wifi
-Main --> Bridge
-Main --> Console
+Main --> Boot
+Boot --> Wifi
+Boot --> Bridge
+Boot --> Console
 Console --> NetCmd
 Console --> BridgeCmd
 NetCmd --> NetApp
 BridgeCmd --> Bridge
 Bridge --> Wifi
-Bridge --> NetApp
+Bridge --> Uart
 @enduml

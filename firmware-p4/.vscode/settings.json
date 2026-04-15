@@ -1,6 +1,0 @@
-{
-  "clangd.path": "/Users/groove/.espressif/tools/esp-clang/esp-19.1.2_20250312/esp-clang/bin/clangd",
-  "clangd.arguments": [
-    "--query-driver=/Users/groove/.espressif/tools/**/bin/*"
-  ]
-}

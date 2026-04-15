@@ -64,15 +64,16 @@ waiting for download
 现象：
 
 - `wifi_set` 失败
-- `net_start` 失败
-- `net_localip` 没拿到地址
+- P4 没拿到 IP
+- PC 发到 `UDP 8888` 或连到 `TCP 8889` 没有进入主桥接链路
+- `net_start` 失败（如果你正在单独验证 `net_*` 调试通道）
 
 先查：
 
 - Wi-Fi 是否连上
-- `net_type` 是否先设置
-- 当前模式是 client 还是 server
-- 目标 IP 和端口是否合理
+- P4 当前本地 IP 是多少
+- 外部流量是否真的发到了主桥接默认端口 `8888/udp` 或 `8889/tcp`
+- 如果你查的是 `net_*` 路径，再确认 `net_type`、`net_mode`、`net_target` / `net_port` 是否已配置
 
 ### 4. 网络正常，但飞控链路不通
 
@@ -110,10 +111,11 @@ waiting for download
 
 | 现象 | 优先看哪里 |
 | --- | --- |
-| 控制台命令不存在 | `firmware-p4/main/console_app.c`、`network_cmd.c`、`bridge_cmd.c` |
-| 网络设置无效 | `firmware-p4/main/network_app.cpp`、`network_cmd.c` |
-| UART 无转发 | `firmware-p4/main/mavlink_bridge.cpp`、`bridge_cmd.c` |
-| C5 启动配置异常 | `firmware-c5/main/esp_hosted_coprocessor.c`、`sdkconfig` |
+| 控制台命令不存在 | `firmware-p4/main/console_app.c`、`firmware-p4/main/network/command/network_command.c`、`firmware-p4/main/bridge_cmd.c` |
+| `net_*` 命令配置无效 | `firmware-p4/main/network/service/network_runtime.cpp`、`firmware-p4/main/network/command/network_command*.c` |
+| 主桥接收不到网络数据 | `firmware-p4/main/app/service/app_boot.c`、`firmware-p4/main/bridge/service/bridge_network_runtime.cpp` |
+| UART 无转发 | `firmware-p4/main/bridge/service/bridge_runtime.cpp`、`firmware-p4/main/transport/adapter/uart_port.cpp`、`firmware-p4/main/bridge_cmd.c` |
+| C5 启动配置异常 | `firmware-c5/main/upstream/esp_hosted_coprocessor.c`、`firmware-c5/main/app/service/coprocessor_entry.c`、`sdkconfig` |
 
 ## 什么时候该回头补文档
 

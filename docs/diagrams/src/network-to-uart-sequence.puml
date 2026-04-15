@@ -3,14 +3,14 @@ title 网络到 UART 时序图
 !include _theme.iuml
 
 actor "PC / GCS" as Client
-participant "network_app" as Net
-participant "mavlink_bridge" as Bridge
+participant "bridge sockets\n(UDP 8888 / TCP 8889)" as Net
+participant "bridge/service/*" as Bridge
 participant "UART Port" as UART
 participant "Flight Controller" as FC
 
 Client -> Net : 发送 UDP / TCP 数据
-Net -> Bridge : 网络接收回调
-Bridge -> Bridge : 判断帧与转发目标
+Net -> Bridge : on_receive_callback
+Bridge -> Bridge : 判断帧与转发 UART
 Bridge -> UART : 写入串口
 UART -> FC : 输出到飞控
 @enduml

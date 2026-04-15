@@ -21,25 +21,29 @@
 
 ### 1. 先定位入口
 
-P4 入口在 `firmware-p4/main/main.c`。C5 入口在 `firmware-c5/main/esp_hosted_coprocessor.c`。
+P4 入口在 `firmware-p4/main/main.c`，真正的启动编排在 `firmware-p4/main/app/service/app_boot.c`。C5 的上游启动入口在 `firmware-c5/main/upstream/esp_hosted_coprocessor.c`，项目自定义约束入口在 `firmware-c5/main/app/service/coprocessor_entry.c`。
 
 ### 2. 再定位模块
 
 P4 一般从这些模块里找：
 
 - `wifi_app`
-- `network_app`
-- `network_cmd`
-- `mavlink_bridge`
+- `app/service/app_boot.c`
+- `bridge/service/*`
+- `bridge_cmd`
+- `network/command/*`
+- `network/service/*`
 - `bridge_cmd`
 - `console_app`
 
 C5 一般先看：
 
-- `esp_hosted_coprocessor.c`
-- `slave_control.*`
-- `sdio_slave_api.*`
-- `slave_wifi_std.*`
+- `upstream/esp_hosted_coprocessor.c`
+- `app/service/coprocessor_entry.c`
+- `upstream/slave_control.*`
+- `upstream/sdio_slave_api.*`
+- `upstream/slave_wifi_std.*`
+- `config/model/product_feature_flags.h`
 - `sdkconfig`
 
 ### 3. 再做单点验证
@@ -92,6 +96,11 @@ idf.py flash monitor
 7. 端到端消息通过
 
 如果中途失败，不要继续叠加步骤，直接回退到上一个已确认正常的节点。
+
+补充一个当前代码里的重要事实：
+
+- 主 MAVLink 桥接链路由 `app_boot -> mavlink_bridge_init()` 直接拉起，默认监听 `UDP 8888` 和 `TCP 8889`
+- `net_*` 命令操作的是 `network/service/*` 里的独立网络运行时，不会直接接管主桥接链路
 
 ## 文档何时更新
 

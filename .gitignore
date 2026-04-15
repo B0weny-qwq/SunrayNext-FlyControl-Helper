@@ -52,12 +52,6 @@ managed_components/
 **/.clangd/
 .ccls-cache/
 **/.ccls-cache/
-!/.vscode/
-!/firmware-p4/.vscode/
-!/firmware-c5/.vscode/
-!/.vscode/settings.json
-!/firmware-p4/.vscode/settings.json
-!/firmware-c5/.vscode/settings.json
 !/.clangd
 !/firmware-p4/.clangd
 !/firmware-c5/.clangd
